@@ -57,7 +57,7 @@ jobs:
             exit 1
           else
             echo "ESLint found no issues. Continuing with the workflow."
-    fi
+          fi
 
       #- name: Check Code Quality
       #  run: node check-quality.js $ESLINT_REPORT_PATH $ESLINT_MAX_WARNINGS
