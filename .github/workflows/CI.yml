@@ -68,12 +68,6 @@ jobs:
       - name: Install Jest
         run: npm install --save-dev jest supertest
 
-      - name: Set Fictitious DB_URI for Tests
-        run: |
-          # Asigna una cadena de conexión ficticia para las pruebas
-          sed -i 's#process.env.DB_URI#\'mongodb://localhost:27017/test_db\'#' server.js
-          npm test
-
       - name: Run Unit Tests
         run: |
           npx jest $TEST_PATH
