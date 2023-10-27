@@ -1,4 +1,6 @@
-const controllers = require('../controllers');
+const { Cliente, Articulo } = require('./models'); // Ajusta la ruta según la ubicación real
+const controllers = require('./controllers'); // Ajusta la ruta según la ubicación real
+
 
 describe('Controladores', () => {
     let req, res;
