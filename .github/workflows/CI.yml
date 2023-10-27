@@ -13,6 +13,7 @@ jobs:
       ESLINT_REPORT_PATH: './.github/workflows/eslint-report.json'
       ESLINT_MAX_WARNINGS: 2
       TEST_PATH: './test'
+      DB_URI: 'mongodb://localhost:27017/test_db'
 
     steps:
       - name: Checkout Repository
@@ -29,6 +30,9 @@ jobs:
           pwd
           ls -la
           cat ./.github/workflows/.eslintrc.js
+          export DB_URI=$DB_URI
+          echo $DB_URI
+
 
       - name: Check npm Version
         run: npm -v
@@ -63,6 +67,12 @@ jobs:
 
       - name: Install Jest
         run: npm install --save-dev jest supertest
+
+      - name: Set Fictitious DB_URI for Tests
+        run: |
+          # Asigna una cadena de conexión ficticia para las pruebas
+          sed -i 's#process.env.DB_URI#\'mongodb://localhost:27017/test_db\'#' server.js
+          npm test
 
       - name: Run Unit Tests
         run: |
