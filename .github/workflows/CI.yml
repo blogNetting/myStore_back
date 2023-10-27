@@ -23,7 +23,7 @@ jobs:
           node-version: 18
 
       - name: Check nodejs Version
-        run: node -v          
+        run: pwd       
 
       - name: Check npm Version
         run: npm -v
@@ -38,4 +38,4 @@ jobs:
         run: npx eslint . --format=json --output-file=$ESLINT_REPORT_PATH
 
       - name: Check Code Quality
-        run: node check-quality.js $ESLINT_REPORT_PATH $ESLINT_MAX_WARNINGS
+        run: node check-quality.js --config .github/workflows/.eslintrc.js  $ESLINT_REPORT_PATH $ESLINT_MAX_WARNINGS
