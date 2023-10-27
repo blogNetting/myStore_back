@@ -3,6 +3,8 @@ const app = require("../server"); // Ajusta la ruta según la ubicación real de
 const controllers = require("../controllers");
 const { Cliente, Articulo } = require("../models");
 
+jest.setTimeout(5000);
+
 describe("Controladores", () => {
   let req, res;
 
