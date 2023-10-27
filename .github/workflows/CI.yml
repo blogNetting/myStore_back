@@ -48,8 +48,8 @@ jobs:
 
       - name: Check Quality
         run: |
-          eslint_exit_code=${{ steps.eslint-exit-code.outputs.eslint_exit_code }}
-          if [ $eslint_exit_code -ne 0 ]; then
+          eslint_exit_code=${{ steps.eslint-step.outcome }}
+          if [ "$eslint_exit_code" != "success" ]; then
             echo "ESLint found issues with a code of $eslint_exit_code."
             echo "Exiting the workflow with an error status."
             exit 1
