@@ -60,10 +60,13 @@ jobs:
             echo "ESLint found no issues. Continuing with the workflow."
           fi
 
+
+      - name: Install Mocha
+        run: npm install mocha --save-dev
+
       - name: Run Unit Tests
         run: |
-          npm install  # Instala las dependencias, si aún no lo has hecho
-          npm test     # Ejecuta tus pruebas unitarias
+          npx mocha ./test
 
       #- name: Check Code Quality
       #  run: node check-quality.js $ESLINT_REPORT_PATH $ESLINT_MAX_WARNINGS
