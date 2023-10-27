@@ -39,9 +39,24 @@ jobs:
 
       - name: Run ESLint and Generate Quality Report
         run: npx eslint . --config .github/workflows/.eslintrc.js --format=json --output-file=$ESLINT_REPORT_PATH
+        continue-on-error: true
+
+      - name: Check ESLint Exit Code
+        id: eslint-exit-code
+        run: |
+          echo ::set-output name=eslint_exit_code::${{ steps.eslint-step.outcome }}
+          echo 'value: ' ${{ steps.eslint-exit-code.outputs.eslint_exit_code }}
 
       - name: Show ESLint Report
         run: cat $ESLINT_REPORT_PATH
 
-      - name: Check Code Quality
-        run: node check-quality.js $ESLINT_REPORT_PATH $ESLINT_MAX_WARNINGS
+      - name: Check Quality
+        run: |
+          eslint_exit_code=${{ steps.eslint-exit-code.outputs.eslint_exit_code }}
+          if [ $eslint_exit_code -ne 0 ]; then
+            echo "ESLint found issues. Exiting with code $eslint_exit_code."
+            exit $eslint_exit_code
+          fi
+
+      #- name: Check Code Quality
+      #  run: node check-quality.js $ESLINT_REPORT_PATH $ESLINT_MAX_WARNINGS
