@@ -31,7 +31,7 @@ describe("Rutas de la API", () => {
     const response = await request(app).get("/api/articulos");
     expect(response.statusCode).toBe(200);
     expect(Articulo.find).toHaveBeenCalled();
-    expect(response.body).toEqual([{ nombre: "Articulo1" }, { nombre: "Articulo2" });
+    expect(response.body).toEqual([{ nombre: "Articulo1" }, { nombre: "Articulo2" }]);
   });
 });
 
