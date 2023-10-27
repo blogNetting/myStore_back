@@ -18,7 +18,7 @@ describe('Test Unitarios Simples', function () {
 
   it('10 / 2 debería ser igual a 5', function () {
     const resultado = 10 / 2;
-    assert.strictEqual(resultado, 4);
+    assert.strictEqual(resultado, 5);
   });
 
   it('Prueba de igualdad de cadenas', function () {
@@ -26,4 +26,5 @@ describe('Test Unitarios Simples', function () {
     const cadena2 = 'Hola, mundo';
     assert.strictEqual(cadena1, cadena2);
   });
+  
 });
