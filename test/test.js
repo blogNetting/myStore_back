@@ -1,4 +1,4 @@
-const sinon = require('jest');
+const jest = require('jest');
 const { Cliente, Articulo } = require('../models'); 
 const controllers = require('../controllers');
 
