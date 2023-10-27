@@ -1,0 +1,81 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  static-code-analysis:
+    name: Static Code Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Static Code Analysis
+      run: |
+        # Ejecuta análisis estático de código aquí
+
+  security-scanning:
+    name: Security Scanning
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Security Scanning
+      run: |
+        # Ejecuta escaneo de seguridad aquí
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: |
+        # Instala las dependencias necesarias
+
+    - name: Run Unit Tests
+      run: |
+        # Ejecuta las pruebas unitarias aquí
+
+  code-coverage:
+    name: Code Coverage
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: |
+        # Instala las dependencias necesarias
+
+    - name: Run Code Coverage
+      run: |
+        # Calcula la cobertura de código aquí
+
+  artifact-generation:
+    name: Artifact Generation
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Generate Artifact
+      run: |
+        # Genera el artefacto de la aplicación aquí
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-app-artifact
+        path: path/to/artifact
