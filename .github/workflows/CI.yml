@@ -66,11 +66,11 @@ jobs:
         run: npm install mocha --save-dev
 
       - name: Install Jest y Sinon
-        run: npm install --save-dev jest sinon
+        run: npm install --save-dev jest
 
       - name: Run Unit Tests
         run: |
-          npx mocha $TEST_PATH
+          npx jest $TEST_PATH
 
       #- name: Check Code Quality
       #  run: node check-quality.js $ESLINT_REPORT_PATH $ESLINT_MAX_WARNINGS
