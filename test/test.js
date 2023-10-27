@@ -1,4 +1,4 @@
-const { Cliente, Articulo } = require('../models'); 
+const { Cliente, Articulo } = require('../models');
 const controllers = require('../controllers');
 
 describe('Controladores', () => {
@@ -16,7 +16,7 @@ describe('Controladores', () => {
     it('debería leer todos los clientes', async () => {
       // Mockea la función de búsqueda de clientes en el modelo Cliente
       const clientesMock = [{ nombre: 'Cliente1' }, { nombre: 'Cliente2' }];
-      Cliente.find = jest.fn().mockResolvedValue(clientesMock);
+      Cliente.find.mockResolvedValue(clientesMock); // Usa 'mockResolvedValue' directamente en lugar de 'jest.fn()'
 
       // Llama a la función del controlador y verifica la respuesta
       await controllers.readClientes(req, res);
@@ -30,7 +30,7 @@ describe('Controladores', () => {
     it('debería leer todos los artículos', async () => {
       // Mockea la función de búsqueda de artículos en el modelo Articulo
       const articulosMock = [{ nombre: 'Articulo1' }, { nombre: 'Articulo2' }];
-      Articulo.find = jest.fn().mockResolvedValue(articulosMock);
+      Articulo.find.mockResolvedValue(articulosMock); // Usa 'mockResolvedValue' directamente en lugar de 'jest.fn()'
 
       // Llama a la función del controlador y verifica la respuesta
       await controllers.readArticulos(req, res);
@@ -40,3 +40,4 @@ describe('Controladores', () => {
     // Agrega más pruebas para otros controladores de artículos aquí
   });
 });
+
