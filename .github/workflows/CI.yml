@@ -3,79 +3,29 @@ name: CI Workflow
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
-  static-code-analysis:
-    name: Static Code Analysis
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Static Code Analysis
-      run: |
-        # Ejecuta análisis estático de código aquí
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 21.1.0
 
-  security-scanning:
-    name: Security Scanning
-    runs-on: ubuntu-latest
+      - name: Check npm Version
+        run: node -v          
 
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Check npm Version
+        run: npm -v
 
-    - name: Security Scanning
-      run: |
-        # Ejecuta escaneo de seguridad aquí
+      - name: Install ESLint
+        run: npm install eslint --save-dev
 
-  unit-tests:
-    name: Unit Tests
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Install Dependencies
-      run: |
-        # Instala las dependencias necesarias
-
-    - name: Run Unit Tests
-      run: |
-        # Ejecuta las pruebas unitarias aquí
-
-  code-coverage:
-    name: Code Coverage
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Install Dependencies
-      run: |
-        # Instala las dependencias necesarias
-
-    - name: Run Code Coverage
-      run: |
-        # Calcula la cobertura de código aquí
-
-  artifact-generation:
-    name: Artifact Generation
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Generate Artifact
-      run: |
-        # Genera el artefacto de la aplicación aquí
-
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: my-app-artifact
-        path: path/to/artifact
+      - name: Check ESLint Version
+        run: npx eslint -v        
