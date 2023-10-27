@@ -40,5 +40,8 @@ jobs:
       - name: Run ESLint and Generate Quality Report
         run: npx eslint . --config .github/workflows/.eslintrc.js --format=json --output-file=$ESLINT_REPORT_PATH
 
+      - name: Show ESLint Report
+        run: cat $ESLINT_REPORT_PATH
+
       - name: Check Code Quality
         run: node check-quality.js $ESLINT_REPORT_PATH $ESLINT_MAX_WARNINGS
