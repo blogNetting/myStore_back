@@ -3,8 +3,6 @@ const app = require("../server"); // Ajusta la ruta según la ubicación real de
 const controllers = require("../controllers");
 const { Cliente, Articulo } = require("../models");
 
-jest.setTimeout(5000);
-
 describe("Controladores", () => {
   let req, res;
 
@@ -25,6 +23,16 @@ describe("Controladores", () => {
       await controllers.readClientes(req, res);
       expect(res.json).toHaveBeenCalledWith(clientesMock);
     });
+
+    it("debería crear un cliente", async () => {
+      // Mock de la función create de Cliente
+      const nuevoCliente = { nombre: "NuevoCliente" };
+      Cliente.create = jest.fn().mockResolvedValue(nuevoCliente);
+
+      req.body = nuevoCliente; // Simula una solicitud con el cuerpo del cliente
+      await controllers.createCliente(req, res);
+      expect(res.json).toHaveBeenCalledWith(nuevoCliente);
+    });
   });
 
   describe("Controladores de Artículos", () => {
@@ -36,5 +44,16 @@ describe("Controladores", () => {
       await controllers.readArticulos(req, res);
       expect(res.json).toHaveBeenCalledWith(articulosMock);
     });
+
+    it("debería crear un artículo", async () => {
+      // Mock de la función create de Articulo
+      const nuevoArticulo = { nombre: "NuevoArticulo", precio: 10 };
+      Articulo.create = jest.fn().mockResolvedValue(nuevoArticulo);
+
+      req.body = nuevoArticulo; // Simula una solicitud con el cuerpo del artículo
+      await controllers.createArticulo(req, res);
+      expect(res.json).toHaveBeenCalledWith(nuevoArticulo);
+    });
   });
 });
+
