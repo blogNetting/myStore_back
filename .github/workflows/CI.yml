@@ -61,11 +61,7 @@ jobs:
             echo "ESLint found no issues. Continuing with the workflow."
           fi
 
-
-      - name: Install Mocha
-        run: npm install mocha --save-dev
-
-      - name: Install Jest y Sinon
+      - name: Install Jest
         run: npm install --save-dev jest
 
       - name: Run Unit Tests
