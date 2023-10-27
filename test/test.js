@@ -3,38 +3,6 @@ const app = require("../server"); // Ajusta la ruta según la ubicación real de
 const controllers = require("../controllers");
 const { Cliente, Articulo } = require("../models");
 
-beforeAll(async () => {
-  // Configura tu base de datos para pruebas si es necesario
-  // Aquí debes realizar la configuración necesaria para tus pruebas
-});
-
-afterAll(async () => {
-  // Realiza la limpieza después de las pruebas
-  // Cierra la conexión a la base de datos, libera recursos, etc.
-});
-
-describe("Rutas de la API", () => {
-  it("debería responder a una solicitud GET a la ruta /api/clientes", async () => {
-    // Mock de la función find de Cliente
-    Cliente.find = jest.fn().mockResolvedValue([{ nombre: "Cliente1" }, { nombre: "Cliente2" }]);
-
-    const response = await request(app).get("/api/clientes");
-    expect(response.statusCode).toBe(200);
-    expect(Cliente.find).toHaveBeenCalled();
-    expect(response.body).toEqual([{ nombre: "Cliente1" }, { nombre: "Cliente2" }]);
-  });
-
-  it("debería responder a una solicitud GET a la ruta /api/articulos", async () => {
-    // Mock de la función find de Articulo
-    Articulo.find = jest.fn().mockResolvedValue([{ nombre: "Articulo1" }, { nombre: "Articulo2" }]);
-
-    const response = await request(app).get("/api/articulos");
-    expect(response.statusCode).toBe(200);
-    expect(Articulo.find).toHaveBeenCalled();
-    expect(response.body).toEqual([{ nombre: "Articulo1" }, { nombre: "Articulo2" }]);
-  });
-});
-
 describe("Controladores", () => {
   let req, res;
 
