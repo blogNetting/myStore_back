@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ESLINT_REPORT_PATH: '.\.github\workflows\eslint-report.json'
+      ESLINT_REPORT_PATH: './.github/workflows/eslint-report.json'
       ESLINT_MAX_WARNINGS: 2
 
     steps:
@@ -27,7 +27,7 @@ jobs:
           node -v          
           pwd
           ls -la
-          cat .github/workflows/.eslintrc.js
+          cat ./.github/workflows/.eslintrc.js
 
       - name: Check npm Version
         run: npm -v
@@ -40,7 +40,7 @@ jobs:
 
       - name: Run ESLint and Generate Quality Report
         id: eslint-step
-        run: npx eslint . --config .github/workflows/.eslintrc.js --format=json --output-file=$ESLINT_REPORT_PATH
+        run: npx eslint . --config ./.github/workflows/.eslintrc.js --format=json --output-file=$ESLINT_REPORT_PATH
         continue-on-error: true
 
       - name: Check ESLint Exit Code
