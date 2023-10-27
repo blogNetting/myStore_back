@@ -12,6 +12,7 @@ jobs:
     env:
       ESLINT_REPORT_PATH: './.github/workflows/eslint-report.json'
       ESLINT_MAX_WARNINGS: 2
+      TEST_PATH: './test'
 
     steps:
       - name: Checkout Repository
@@ -66,7 +67,7 @@ jobs:
 
       - name: Run Unit Tests
         run: |
-          npx mocha ./test
+          npx mocha $TEST_PATH
 
       #- name: Check Code Quality
       #  run: node check-quality.js $ESLINT_REPORT_PATH $ESLINT_MAX_WARNINGS
