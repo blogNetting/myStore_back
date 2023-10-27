@@ -50,12 +50,14 @@ jobs:
         run: |
           eslint_exit_code=${{ steps.eslint-step.outcome }}
           if [ "$eslint_exit_code" != "success" ]; then
-            echo "ESLint found issues with a code of $eslint_exit_code."
-            echo "Exiting the workflow with an error status."
+            eslint_report=$(cat $ESLINT_REPORT_PATH)
+            issue_count=$(echo "$eslint_report" | jq length)  # Requiere 'jq' para contar problemas JSON
+            echo "ESLint found $issue_count issues. Exiting the workflow with an error status."
+            echo "You can view the full ESLint report [here](link-to-report)."
             exit 1
           else
             echo "ESLint found no issues. Continuing with the workflow."
-          fi
+    fi
 
       #- name: Check Code Quality
       #  run: node check-quality.js $ESLINT_REPORT_PATH $ESLINT_MAX_WARNINGS
